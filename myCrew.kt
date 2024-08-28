@@ -1,5 +1,13 @@
 import java.util.*
 
+
+
+
+var dirtiness: Int = 0;
+
+
+
+
 fun feedTheCrew() {
     val day = randomDay();
     val food = crewFood(day);
@@ -9,6 +17,17 @@ fun feedTheCrew() {
     if (shouldCleanShip(day)) {
         println("The crew needs to clean the ship today.");
     }
+}
+
+fun fedCrew(dirty: Int) = dirty + 2;
+
+fun updateDirty(dirty: Int, operation: (Int) -> Int): Int {
+    return operation(dirty);
+}
+
+fun dirtyProcessor() {
+    dirtiness = updateDirty(dirtiness,cleanShip);
+    dirtiness = updateDirty(dirtiness, ::fedCrew);
 }
 
 fun randomDay() : String {
@@ -34,8 +53,17 @@ fun dailyActivity(activity: String = "sleep") {
 }
 
 fun shouldCleanShip(day: String, dirty: Int = 0): Boolean {
-    return true;
+    val isDirty = dirty > 10;
+    val isCleaningDay = day == "Wednesday";
+
+    return when {
+        isDirty -> true;
+        isCleaningDay -> true;
+        else -> false;
+    }
 }
+
+val cleanShip: (Int) -> Int = {dirty -> dirty / 2};
 
 fun addMoreCrewmates(shipSize: Int,
                      currentCrew: Array<String>,

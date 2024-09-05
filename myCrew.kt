@@ -84,4 +84,25 @@ fun addMoreCrewmates(shipSize: Int,
 
 fun main(args: Array<String>) {
     feedTheCrew();
+
+    val fishingGear = "fishing rod" to "catch fish";
+    val (tool, use) = fishingGear;
+    println("The crew will use a $tool to $use!");
+
+    val favoriteFoodList = mutableListOf("meat", "cotton candy", "cola", "sandwiches", "beer");
+    favoriteFoodList.add("tea");
+    favoriteFoodList.remove("cola");
+    favoriteFoodList.contains("meat");
+    favoriteFoodList.contains("cola");
+    println(favoriteFoodList.subList(2, favoriteFoodList.size))
+
+    val favoriteFoods = mapOf("luffy" to "meat", "chopper" to "cotton candy", "franky" to "cola");
+    println(favoriteFoods.get("chopper"));
+    println(favoriteFoods["chopper"]);
+    println(favoriteFoods.getOrDefault("nami", "unknown"));
+    favoriteFoods.getOrElse("nami") {"still unknown"}
+
+    val favoriteWeapons = mutableMapOf("luffy" to "hands");
+    favoriteWeapons.put("chopper", "transformations");
+    favoriteWeapons.remove("luffy");
 }
